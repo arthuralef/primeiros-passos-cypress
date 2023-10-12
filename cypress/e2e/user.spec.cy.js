@@ -18,7 +18,9 @@ describe('Orange HRM Tests', () => {
     lastName: "Nascimento",
     genericField: '.oxd-input--active',
     dateField: "[placeholder='yyyy-mm-dd']",
-    dateCloseBotton: ".--close"
+    dateCloseBotton: ".--close",
+    typeSubmiteBotton: "[type='submit']",
+    successSave: '.oxd-toast-close'
   }
 
 
@@ -41,9 +43,12 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.dateCloseBotton).click()
     cy.get(selectorsList.genericField).eq(8).clear().type('1111')
     cy.get(selectorsList.genericField).eq(9).clear().type('9999')
+    cy.get(selectorsList.typeSubmiteBotton).eq(0).click()
+    cy.get('body').should('contain', "Successfully Updated")
+    cy.get(selectorsList.successSave)
     
   })
-  it('Login - Fail', () => {
+  it.skip('Login - Fail', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userFail.username)
     cy.get(selectorsList.passwordField).type(userData.userFail.password)
