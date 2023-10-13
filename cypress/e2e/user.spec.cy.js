@@ -20,7 +20,14 @@ describe('Orange HRM Tests', () => {
     dateField: "[placeholder='yyyy-mm-dd']",
     dateCloseBotton: ".--close",
     typeSubmiteBotton: "[type='submit']",
-    successSave: '.oxd-toast-close'
+    successSave: '.oxd-toast-close',
+    nationalityField: ":nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon",
+    nationality: ':nth-child(27)',
+    maritalStatusField: ':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon',
+    maritalSatus: '.oxd-select-dropdown > :nth-child(2)',
+    bloodTypeField: '.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text',
+    bloodType: '.oxd-select-dropdown > :nth-child(8)',
+
   }
 
 
@@ -43,10 +50,18 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.dateCloseBotton).click()
     cy.get(selectorsList.genericField).eq(8).clear().type('1111')
     cy.get(selectorsList.genericField).eq(9).clear().type('9999')
-    cy.get(selectorsList.typeSubmiteBotton).eq(0).click()
+    cy.get(selectorsList.typeSubmiteBotton).eq(0).click({ force: true })
     cy.get('body').should('contain', "Successfully Updated")
     cy.get(selectorsList.successSave)
-    
+    cy.get(selectorsList.nationalityField).click ()
+    cy.get(selectorsList.nationality).click()
+    cy.get(selectorsList.maritalStatusField).click()
+    cy.get(selectorsList.maritalSatus).click()
+    cy.get(selectorsList.bloodTypeField).click()
+    cy.get(selectorsList.bloodType).click()
+    cy.get(selectorsList.typeSubmiteBotton).eq(1).click()
+    cy.get('body').should('contain', "Successfully Saved")
+
   })
   it.skip('Login - Fail', () => {
     cy.visit('/auth/login')
