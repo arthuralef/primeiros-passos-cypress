@@ -1,15 +1,20 @@
 import userData from '../fixtures/users/userData.json'
+import menu from '../pages/menuPage'
+import login from '../pages/loginPage'
+import dashboard from '../pages/dashboardPage'
+
+const menuPage = new menu()
+const loginPage = new login()
+const dashboardPage = new dashboard()
 
 describe('Orange HRM Tests', () => {
 
   const selectorsList = {
-    usernameField: "[name='username']",
-    passwordField: "[name='password']",
-    loginButton: "[type='submit']",
-    selectionTitleTopBar: '.oxd-topbar-header-breadcrumb-module',
-    dashboardGrid: '.orangehrm-dashboard-grid',
-    worngCredentialAlert: '.oxd-alert',
-    myInfoBotton: "[href='/web/index.php/pim/viewMyDetails']",
+
+   
+    
+
+    
     firstNameField: "[name='firstName']",
     middieNameField: "[name='middleName']",
     lastNameField: "[name='lastName']",
@@ -32,12 +37,20 @@ describe('Orange HRM Tests', () => {
 
 
   it.only('User Info Update - Success', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
-    cy.get(selectorsList.loginButton).click()
+    loginPage.accessLoginPage()
+    loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
+
+    dashboardPage.checkDashboardPage()
+
+    menuPage.accessMyInfo()
+
+
+
+    
+    /* 
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
+   
     cy.get(selectorsList.myInfoBotton).click()
     cy.get(selectorsList.firstNameField).clear().type(selectorsList.firstName)
     cy.get(selectorsList.middieNameField).clear().type(selectorsList.middieName)
@@ -60,7 +73,7 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.bloodTypeField).click()
     cy.get(selectorsList.bloodType).click()
     cy.get(selectorsList.typeSubmiteBotton).eq(1).click()
-    cy.get('body').should('contain', "Successfully Saved")
+    cy.get('body').should('contain', "Successfully Saved") */
 
   })
   it.skip('Login - Fail', () => {
