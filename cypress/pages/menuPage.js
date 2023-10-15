@@ -1,6 +1,6 @@
-class menu{
+class menu {
     
-    selectorsList(){
+    selectorsList() {
         const selectors = {
             adminBotton: "[href='/web/index.php/admin/viewAdminModule']",
             pimBotton: "[href='/web/index.php/pim/viewPimModule']",
@@ -18,7 +18,6 @@ class menu{
 
         return selectors
     }
-
 
     accessAdm() {
         cy.get(this.selectorsList().adminBotton).click()

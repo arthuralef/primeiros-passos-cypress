@@ -1,40 +1,19 @@
 import userData from '../fixtures/users/userData.json'
 import menu from '../pages/menuPage'
 import login from '../pages/loginPage'
+import myInfo from '../pages/myInfoPage'
 import dashboard from '../pages/dashboardPage'
 
 const menuPage = new menu()
 const loginPage = new login()
+const myInfoPage = new myInfo()
 const dashboardPage = new dashboard()
+
+
 
 describe('Orange HRM Tests', () => {
 
-  const selectorsList = {
-
-   
-    
-
-    
-    firstNameField: "[name='firstName']",
-    middieNameField: "[name='middleName']",
-    lastNameField: "[name='lastName']",
-    firstName: "Arthur",
-    middieName: "Alef",
-    lastName: "Nascimento",
-    genericField: '.oxd-input--active',
-    dateField: "[placeholder='yyyy-mm-dd']",
-    dateCloseBotton: ".--close",
-    typeSubmiteBotton: "[type='submit']",
-    successSave: '.oxd-toast-close',
-    nationalityField: ":nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon",
-    nationality: ':nth-child(27)',
-    maritalStatusField: ':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon',
-    maritalSatus: '.oxd-select-dropdown > :nth-child(2)',
-    bloodTypeField: '.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text',
-    bloodType: '.oxd-select-dropdown > :nth-child(8)',
-
-  }
-
+  
 
   it.only('User Info Update - Success', () => {
     loginPage.accessLoginPage()
@@ -44,14 +23,19 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
+    myInfoPage.fillPersonalDetails('Arthur', 'Alef', 'Nascimento', 'LumeStack')
 
+    myInfoPage.fillEmployeeDetails('001', '000', '999999', '2010-06-01', '0007', '0000')
+
+    myInfoPage.seveForm()
+
+    myInfoPage.fillStatus()
+
+    myInfoPage.saveCustomFields()
 
     
     /* 
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
-   
-    cy.get(selectorsList.myInfoBotton).click()
+
     cy.get(selectorsList.firstNameField).clear().type(selectorsList.firstName)
     cy.get(selectorsList.middieNameField).clear().type(selectorsList.middieName)
     cy.get(selectorsList.lastNameField).clear().type(selectorsList.lastName)
