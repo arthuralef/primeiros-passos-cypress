@@ -25,13 +25,19 @@ describe('Orange HRM Tests', () => {
 
     myInfoPage.fillPersonalDetails('Arthur', 'Alef', 'Nascimento', 'LumeStack')
 
-    myInfoPage.fillEmployeeDetails('001', '000', '999999', '2010-06-01', '0007', '0000')
+    myInfoPage.fillEmployeeDetails('001', '000', '999999', '2010-06-01', '6969', '6969', 'Capitan')
 
     myInfoPage.seveForm()
 
     myInfoPage.fillStatus()
 
     myInfoPage.saveCustomFields()
+
+    myInfoPage.recordFoundEnter('Commit')
+
+    myInfoPage.saveRecord()
+
+    myInfoPage.recordFoundDel()
 
     
     /* 

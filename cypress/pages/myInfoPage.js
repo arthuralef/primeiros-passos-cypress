@@ -16,6 +16,13 @@ class myInfo {
             maritalSatus: '.oxd-select-dropdown > :nth-child(2)',
             bloodTypeField: '.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text',
             bloodType: '.oxd-select-dropdown > :nth-child(8)',
+            checkBox: '.oxd-checkbox-input-icon',
+            recordEditText: '.bi-pencil-fill',
+            commenterField: '.oxd-textarea',
+            delAllRecord: '.oxd-button--label-danger',
+            confirmDelRecord: '.orangehrm-button-margin',
+            addRecord: '.oxd-button--text',
+            browserRecord: '.oxd-file-button',
 
         }
 
@@ -30,7 +37,7 @@ class myInfo {
         cy.get(this.selectorsList().genericField).eq(3).clear().type(nickName)
     }
 
-    fillEmployeeDetails(employeeId, otherId, driversLicenseNumber, expireyDate, ssnNumber, sinNumber) {
+    fillEmployeeDetails(employeeId, otherId, driversLicenseNumber, expireyDate, ssnNumber, sinNumber, militaryService,) {
 
         cy.get(this.selectorsList().genericField).eq(4).clear().type(employeeId)
         cy.get(this.selectorsList().genericField).eq(5).clear().type(otherId)
@@ -39,6 +46,9 @@ class myInfo {
         cy.get(this.selectorsList().dateCloseBotton).click()
         cy.get(this.selectorsList().genericField).eq(8).clear().type(ssnNumber)
         cy.get(this.selectorsList().genericField).eq(9).clear().type(sinNumber)
+        cy.get(this.selectorsList().genericField).eq(11).clear().type(militaryService)
+        cy.get(this.selectorsList().checkBox).eq(0).click()
+
     }
 
     seveForm() {
@@ -62,6 +72,33 @@ class myInfo {
         cy.get('body').should('contain', "Successfully Saved")
     }
 
+    recordFoundEnter(commitField) {
+        cy.get(this.selectorsList().recordEditText).click()
+        cy.get(this.selectorsList().commenterField).clear().type(commitField)
+    }
+
+    saveRecord() {
+        cy.get(this.selectorsList().typeSubmiteBotton).eq(2).click()
+        cy.get('body').should('contain', "Successfully Saved")
+    }
+
+    /*recordFoundAdd() {
+        cy.get(this.selectorsList().addRecord).click()
+        cy.get(this.selectorsList().browserRecord).click()
+    }
+    
+    1 - Precisar ser inserido arquivo manualmente
+    2 - Não foi possive fazer o Upload do arquivo
+    3 - Fazer teste manualmente
+
+*/
+
+    recordFoundDel() {
+        cy.get(this.selectorsList().checkBox).eq(1).click()
+        cy.get(this.selectorsList().delAllRecord).click()
+        cy.get(this.selectorsList().confirmDelRecord).eq(1).click()
+        cy.get('body').should('contain', "Successfully Deleted")
+    }
 }
 
 export default myInfo
