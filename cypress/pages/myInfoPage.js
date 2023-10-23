@@ -73,9 +73,11 @@ class myInfo {
     }
 
     recordFoundEnter(commitField) {
-        cy.get(this.selectorsList().recordEditText).click()
+        cy.get(this.selectorsList().recordEditText).eq(0).click()
         cy.get(this.selectorsList().commenterField).clear().type(commitField)
     }
+
+    //Irá gerar um erro se não houver record gravada, criar um manualmente antes de iniciar os testes.
 
     saveRecord() {
         cy.get(this.selectorsList().typeSubmiteBotton).eq(2).click()

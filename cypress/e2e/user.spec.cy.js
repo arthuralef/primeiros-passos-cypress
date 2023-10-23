@@ -17,6 +17,9 @@ describe('Orange HRM Tests', () => {
 
   it.only('User Info Update - Success', () => {
     loginPage.accessLoginPage()
+
+    loginPage.checkAccessInvalid(userData.userFail.username, userData.userFail.password)
+
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
 
     dashboardPage.checkDashboardPage()
@@ -66,11 +69,5 @@ describe('Orange HRM Tests', () => {
     cy.get('body').should('contain', "Successfully Saved") */
 
   })
-  it.skip('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userFail.username)
-    cy.get(selectorsList.passwordField).type(userData.userFail.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.worngCredentialAlert)
-  })
+
 })
