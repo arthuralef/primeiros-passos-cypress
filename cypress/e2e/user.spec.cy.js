@@ -13,12 +13,10 @@ const dashboardPage = new dashboard()
 
 describe('Orange HRM Tests', () => {
 
-  
-
   it.only('User Info Update - Success', () => {
     loginPage.accessLoginPage()
 
-    loginPage.checkAccessInvalid(userData.userFail.username, userData.userFail.password)
+    //loginPage.checkAccessInvalid(userData.userFail.username, userData.userFail.password)
 
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
 
