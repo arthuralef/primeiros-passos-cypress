@@ -4,6 +4,9 @@ import login from '../pages/loginPage'
 import myInfo from '../pages/myInfoPage'
 import dashboard from '../pages/dashboardPage'
 
+const Chance = require('chance')
+
+const chance = new Chance()
 const menuPage = new menu()
 const loginPage = new login()
 const myInfoPage = new myInfo()
@@ -24,9 +27,9 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
-    myInfoPage.fillPersonalDetails('Arthur', 'Alef', 'Nascimento', 'LumeStack')
+    myInfoPage.fillPersonalDetails(chance.first(), chance.last(), chance.last(), chance.animal())
 
-    myInfoPage.fillEmployeeDetails('001', '000', '999999', '2010-06-01', '6969', '6969', 'Capitan')
+    myInfoPage.fillEmployeeDetails(chance.year(), chance.year(), chance.age(), '2025-07-01', chance.year(), chance.year(), chance.animal())
 
     myInfoPage.seveForm()
 
@@ -34,7 +37,7 @@ describe('Orange HRM Tests', () => {
 
     myInfoPage.saveCustomFields()
 
-    myInfoPage.recordFoundEnter('Commit')
+    myInfoPage.recordFoundEnter(chance.company())
 
     myInfoPage.saveRecord()
 
